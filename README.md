@@ -1,4 +1,4 @@
-# 🎬 Movie Catalog API
+# Movie Catalog API
 
 Esta é uma API REST para listagem de filmes desenvolvida em Java com o framework Spring Boot.
 Este projeto foi construído por mim do absoluto zero para aprender os conceitos fundamentais do desenvolvimento de servidores (Backend).
