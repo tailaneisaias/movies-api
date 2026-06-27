@@ -1,9 +1,8 @@
 package com.example.lista_filmes.controller;
 
 import com.example.lista_filmes.model.Filme;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class FilmeController {
 
     private List<Filme> meusFilmes = new ArrayList<>();
 
-    public FilmeController() {
+    public FilmeController() { //Apenas para adionar esses 3 filmes
         Filme filme1 = new Filme();
         filme1.setTitulo("O Rei Leão");
         filme1.setGenero("Animação");
@@ -37,10 +36,22 @@ public class FilmeController {
 
         meusFilmes.add(filme3);
 
-
     }
+
     @GetMapping
     public List<Filme> enviarFilmesParaInternet() {
         return meusFilmes;
+    } //Listagem de filmes
+
+    @PostMapping("/criarFilme")
+    public String criarFilme(@RequestBody Filme novoFilme) {
+        meusFilmes.add(novoFilme);
+        return "Sucesso";
+    }
+
+    @DeleteMapping("/deletarFilme/{titulo}")
+    public String deletarFilme(@PathVariable String titulo) {
+        meusFilmes.removeIf(filme -> filme.getTitulo().equalsIgnoreCase(titulo));
+        return "Deletado";
     }
 }
